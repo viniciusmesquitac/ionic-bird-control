@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor() { }
+
+  thumbClicked(event) {
+    console.log('thumb clicked');
+  }
+
+  btnClicked(event) {
+    console.log('clicked');
+  }
 
 }
