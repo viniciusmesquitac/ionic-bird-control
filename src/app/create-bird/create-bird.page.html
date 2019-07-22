@@ -1,12 +1,61 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>create-bird</ion-title>
+    <ion-title color="light">Adicionar Pássaro</ion-title>
     <ion-buttons slot="start">
-        <ion-back-button (click)='goBack($event)'></ion-back-button>
+      <ion-back-button color="light" (click)='goBack($event)'></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+    <ion-item>
+        <ion-label>Nome:</ion-label>
+        <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+    </ion-item>
+
+  <ion-item>
+    <ion-label>Gênero</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option value="f">Feminino</ion-select-option>
+      <ion-select-option value="m">Masculino</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Casal</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option value="f">Female</ion-select-option>
+      <ion-select-option value="m">Male</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Cor</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option value="f">Azul</ion-select-option>
+      <ion-select-option value="m">Verde</ion-select-option>
+      <ion-select-option value="m">Branco</ion-select-option>
+      <ion-select-option value="m">Preto</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Linhagem</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option value="f">Female</ion-select-option>
+      <ion-select-option value="m">Male</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Pai</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option value="f">Female</ion-select-option>
+      <ion-select-option value="m">Male</ion-select-option>
+    </ion-select>
+  </ion-item>
 </ion-content>
+
+<section>
+    <ion-button expand="block" (click)='goBirdTab($event)'>ADICIONAR</ion-button>
+</section>

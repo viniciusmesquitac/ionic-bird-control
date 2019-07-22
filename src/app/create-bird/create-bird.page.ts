@@ -14,6 +14,10 @@ export class CreateBirdPage implements OnInit {
     this.navCtrl.pop();
   }
 
+  goBirdTab(event) {
+    this.navCtrl.navigateForward('/tabs');
+  }
+
   ngOnInit() {
   }
 

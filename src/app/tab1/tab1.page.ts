@@ -12,11 +12,15 @@ export class Tab1Page {
   constructor(public navCtrl: NavController) { }
   // click events //
   thumbClicked(event) {
-    console.log('thumb clicked');
+    this.navCtrl.navigateForward('/info-bird');
   }
 
   fabClicked(event) {
-  this.navCtrl.navigateForward('/create-bird');
+    this.navCtrl.navigateForward('/create-bird');
+  }
+
+  fetchBirds(event) {
+    console.log(event.target.value);
   }
 
 }
