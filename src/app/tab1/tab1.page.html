@@ -1,47 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="light" *ngIf="!isSearchOpened"> 
+    <ion-title color="light" *ngIf="!isSearchOpened">
       Passaros
     </ion-title>
-    <ion-buttons slot="end">
-        <button ion-button icon-only *ngIf="!isSearchOpened" (click)="isSearchOpened=true">
-          <ion-icon color="primary" slot="end" name= "search"></ion-icon>
-        </button>
-    </ion-buttons>
-    <ion-searchbar animated *ngIf="isSearchOpened" showCancelButton="always"(ionCancel)="isSearchOpened=false"></ion-searchbar>
+    <ion-item slot="end" *ngIf="!isSearchOpened" (click)="isSearchOpened=true">
+      <ion-icon name="search" color="light"></ion-icon>
+    </ion-item>
+    <ion-searchbar animated *ngIf="isSearchOpened" showCancelButton="always" (ionCancel)="isSearchOpened=false">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item (click)='thumbClicked($event)'>
-        <ion-thumbnail slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-thumbnail>
-        <ion-label>ANILHA 1
-            <ion-icon slot="icon-only" src="assets/macho.svg"></ion-icon>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-thumbnail slot="start">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-thumbnail>
-          <ion-label>ANILHA 2
-              <ion-icon slot="icon-only" src="assets/femea.svg"></ion-icon>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-thumbnail slot="start">
-              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-            </ion-thumbnail>
-            <ion-label>ANILHA 3
-                <ion-icon slot="icon-only" src="assets/macho.svg"></ion-icon>
-            </ion-label>
-        </ion-item>
+  <ion-item (click)='thumbClicked($event)'>
+    <ion-thumbnail slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-thumbnail>
+    <ion-label>ANILHA 1
+      <ion-icon slot="icon-only" src="assets/macho.svg"></ion-icon>
+    </ion-label>
+  </ion-item>
+
+  <ion-item (click)='thumbClicked($event)'>
+    <ion-thumbnail slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-thumbnail>
+    <ion-label>ANILHA 2
+      <ion-icon slot="icon-only" src="assets/femea.svg"></ion-icon>
+    </ion-label>
+  </ion-item>
+
+  <ion-item (click)='thumbClicked($event)'>
+    <ion-thumbnail slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-thumbnail>
+    <ion-label>ANILHA 3
+      <ion-icon slot="icon-only" src="assets/macho.svg"></ion-icon>
+    </ion-label>
+  </ion-item>
 
 
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button>
-              <ion-icon name="add"></ion-icon>
-            </ion-fab-button>
-        </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)='fabClicked($event)'>
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
