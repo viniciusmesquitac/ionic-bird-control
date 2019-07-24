@@ -10,9 +10,9 @@
     animated 
     placeholder="Buscar Passaros..." 
     *ngIf="isSearchOpened" 
-    showCancelButton="always" 
-    (ionCancel)="isSearchOpened=false"
-    (ionChange)="fetchBirds($event)">
+    showCancelButton="always"
+    (ionCancel)="isSearchOpened=false; refreshBirds($event);"
+    (ionChange)="filterBirds($event)">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -25,7 +25,8 @@
     </ion-thumbnail>
     <ion-label>
       {{ bird.name }}
-      <ion-icon slot="icon-only" src="assets/macho.svg"></ion-icon>
+      <ion-icon slot="icon-only" *ngIf ="bird.gender =='Male'"src="assets/macho.svg"></ion-icon>
+      <ion-icon slot="icon-only" *ngIf ="bird.gender =='Female'"src="assets/femea.svg"></ion-icon>
     </ion-label>
   </ion-item>
 

@@ -15,6 +15,7 @@ export class CreateBirdPage implements OnInit {
 
   bird: Bird = {
     name: '',
+    gender: '',
   };
 
   goBack(event) {
@@ -37,9 +38,9 @@ export class CreateBirdPage implements OnInit {
   addBird() {
     this.birdService.addBird(this.bird).then(() => {
       this.router.navigateByUrl('/');
-      this.showToast('Passaro adicionado!');
+      this.showToast('Pássaro adicionado!');
     }, err => {
-      this.showToast('Theres a problem in add a new bird');
+      this.showToast('Ocorreu um erro ao adicionar, tente novamente.');
     });
   }
 

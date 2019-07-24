@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 export interface Bird {
   id?: string;
   name: string;
+  gender: string;
 }
 
 @Injectable({
@@ -13,6 +14,8 @@ export interface Bird {
 })
 export class BirdsService {
   public birds: Observable<Bird[]>;
+  public filters: Observable<Bird[]>;
+  public filtersCollection: AngularFirestoreCollection<Bird>;
   private birdCollection: AngularFirestoreCollection<Bird>;
 
   constructor(private afs: AngularFirestore) {
@@ -26,9 +29,6 @@ export class BirdsService {
         });
       })
     );
-  }
-
-  fetchBirds() {
   }
 
   getBirds(): Observable<Bird[]> {
@@ -55,6 +55,34 @@ export class BirdsService {
 
   deleteBird(id: string): Promise<void> {
     return this.birdCollection.doc(id).delete();
+  }
+
+  searchBird(filter: string) {
+    if (filter.length !== 0) {
+      console.log('test filter');
+      this.birdCollection = this.afs.collection<Bird>('bird', ref => ref.where(('name'), '==', filter));
+      this.birds = this.birdCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      );
+    } else if (filter.length === 0) {
+      this.birdCollection = this.afs.collection<Bird>('bird');
+      this.birds = this.birdCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      );
+      console.log('you aren\'t filtering');
+    }
   }
 
 

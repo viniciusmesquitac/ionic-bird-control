@@ -11,6 +11,7 @@ import { Bird, BirdsService } from '../services/birds.service';
 
 export class Tab1Page implements OnInit {
   public isSearchOpened = false;
+  public text = '';
   private birds: Observable<Bird[]>;
 
   constructor(public navCtrl: NavController, private birdService: BirdsService) { }
@@ -28,8 +29,18 @@ export class Tab1Page implements OnInit {
     this.navCtrl.navigateForward('/create-bird');
   }
 
-  fetchBirds(event) {
+  filterBirds(event) {
+    this.text = event.target.value;
+    this.birdService.searchBird(this.text);
     this.birds = this.birdService.getBirds();
+  }
+
+  refreshBirds(event) {
+    this.text = event.target.value;
+    if (this.text.length !== 0) {
+      this.birdService.searchBird(''); // passing filter.length == 0
+      this.birds = this.birdService.getBirds();
+    }
   }
 
   searchBirds(event) {
