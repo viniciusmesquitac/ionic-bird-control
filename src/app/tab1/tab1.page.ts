@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { Bird, BirdsService } from '../services/birds.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,9 +9,16 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 
-export class Tab1Page {
+export class Tab1Page implements OnInit {
   public isSearchOpened = false;
-  constructor(public navCtrl: NavController) { }
+  private birds: Observable<Bird[]>;
+
+  constructor(public navCtrl: NavController, private birdService: BirdsService) { }
+
+  ngOnInit() {
+    this.birds = this.birdService.getBirds();
+  }
+
   // click events //
   thumbClicked(event) {
     this.navCtrl.navigateForward('/info-bird');
@@ -20,6 +29,10 @@ export class Tab1Page {
   }
 
   fetchBirds(event) {
+    this.birds = this.birdService.getBirds();
+  }
+
+  searchBirds(event) {
     console.log(event.target.value);
   }
 

@@ -23,4 +23,4 @@ const routes: Routes = [
   ],
   declarations: [CreateBirdPage]
 })
-export class CreateBirdPageModule {}
+export class CreateBirdPageModule { }

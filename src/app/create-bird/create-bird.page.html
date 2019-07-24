@@ -10,7 +10,7 @@
 <ion-content>
     <ion-item>
         <ion-label>Nome:</ion-label>
-        <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+        <ion-input [(ngModel)] = 'bird.name'></ion-input>
     </ion-item>
 
   <ion-item>
@@ -57,5 +57,5 @@
 </ion-content>
 
 <section>
-    <ion-button expand="block" (click)='goBirdTab($event)'>ADICIONAR</ion-button>
+    <ion-button expand="block" (click)='addBird()'>ADICIONAR</ion-button>
 </section>

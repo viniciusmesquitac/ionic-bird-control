@@ -19,12 +19,12 @@
 
 <ion-content>
 
-  <ion-item *ngFor = "let item of [1,1,1,1,1,1,1,1,1,1,1,1,1,1]" (click)='thumbClicked($event)'>
+  <ion-item button *ngFor="let bird of (birds | async)" [routerLink]="['/bird', bird.id]" (click)='thumbClicked($event)'>
     <ion-thumbnail slot="start">
       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      ANILHA 1
+      {{ bird.name }}
       <ion-icon slot="icon-only" src="assets/macho.svg"></ion-icon>
     </ion-label>
   </ion-item>
