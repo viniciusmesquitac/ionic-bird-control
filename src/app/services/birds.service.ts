@@ -7,6 +7,11 @@ export interface Bird {
   id?: string;
   name: string;
   gender: string;
+  couple?: string;
+  color: string;
+  lineage?: string;
+  father?: string;
+  mother?: string;
 }
 
 @Injectable({
@@ -14,8 +19,9 @@ export interface Bird {
 })
 export class BirdsService {
   public birds: Observable<Bird[]>;
-  public filters: Observable<Bird[]>;
-  public filtersCollection: AngularFirestoreCollection<Bird>;
+  public birdsFemale: Observable<Bird[]>;
+  public birdsMale: Observable<Bird[]>;
+
   private birdCollection: AngularFirestoreCollection<Bird>;
 
   constructor(private afs: AngularFirestore) {
@@ -45,6 +51,33 @@ export class BirdsService {
     );
   }
 
+  getFemaleBirds() {
+    this.birdCollection = this.afs.collection<Bird>('bird', ref => ref.where(('gender'), '==', 'Female'));
+    this.birdsFemale = this.birdCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+    return this.birdsFemale;
+  }
+
+  getMaleBirds() {
+    this.birdCollection = this.afs.collection<Bird>('bird', ref => ref.where(('gender'), '==', 'Male'));
+    this.birdsMale = this.birdCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+    return this.birdsMale;
+  }
   addBird(bird: Bird): Promise<DocumentReference> {
     return this.birdCollection.add(bird);
   }
