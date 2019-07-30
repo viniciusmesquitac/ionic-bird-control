@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
+    <ion-title color="light">
       Acasalemento
     </ion-title>
   </ion-toolbar>
@@ -79,6 +79,8 @@
 </ion-list>
 
 <ion-fab vertical = 'bottom' horizontal = 'end' slot = 'fixed'>
-  <ion-fab-button size = 'small' (click) = 'addMating()'> + </ion-fab-button>
+  <ion-fab-button (click) ='addMating()'>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
 </ion-fab>
 </ion-content>

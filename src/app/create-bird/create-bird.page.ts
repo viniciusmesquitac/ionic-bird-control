@@ -16,7 +16,7 @@ export class CreateBirdPage implements OnInit {
   public isFemale: Boolean = true;
   public isMale: Boolean = true;
 
-  constructor(private navCtrl: NavController, private activatedRoute: ActivatedRoute, private birdService: BirdsService,
+  constructor(private navCtrl: NavController, private birdService: BirdsService,
               private toastCtrl: ToastController, private router: Router) { }
 
   bird: Bird = {

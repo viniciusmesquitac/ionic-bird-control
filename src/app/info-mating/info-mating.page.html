@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Reprodução</ion-title>
+    <ion-title color="light">Reprodução</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -21,7 +24,7 @@
       <ion-label>
         <h3> Anilha </h3>
       </ion-label>
-      <ion-label align = 'right' class = 'description'>
+      <ion-label >
         #1122323
       </ion-label>
     </ion-item>
@@ -30,7 +33,7 @@
       <ion-label>
         <h3> Cor </h3>
       </ion-label>
-      <ion-label align = 'right' class = 'description'>
+      <ion-label class="ion-text-end description">
         preto
       </ion-label>
     </ion-item>
@@ -39,7 +42,7 @@
       <ion-label>
         <h3> Linhagens </h3>
       </ion-label>
-      <ion-label align = 'right' class = 'description'>
+      <ion-label class="ion-text-end description">
         Fi de alguém
       </ion-label>
     </ion-item>
@@ -60,7 +63,7 @@
       <ion-label>
         <h3> Anilha </h3>
       </ion-label>
-      <ion-label align = 'right' class = 'description'>
+      <ion-label class="ion-text-end description">
         #3333333
       </ion-label>
     </ion-item>
@@ -69,7 +72,7 @@
       <ion-label>
         <h3> Cor </h3>
       </ion-label>
-      <ion-label align = 'right' class = 'description'>
+      <ion-label class="ion-text-end description">
         amarelo
       </ion-label>
     </ion-item>
@@ -78,7 +81,7 @@
       <ion-label>
         <h3> Linhagens </h3>
       </ion-label>
-      <ion-label align = 'right' class = 'description'>
+      <ion-label class="ion-text-end description">
         Fi de alguém
       </ion-label>
     </ion-item>
@@ -92,7 +95,10 @@
       <ion-datetime displayFormat = "DD-MM-YYYY" placeholder="Selecione a Data" class = 'date'></ion-datetime>
     </ion-label>
   </ion-item>
-
-  <ion-button expand= 'block' size = 'large' id = 'btnFinalizar'> Finalizar Reprodução </ion-button>
-
 </ion-content>
+
+<ion-footer>
+
+  <ion-button expand= 'block' size='large' id = 'btnFinalizar'> Finalizar Reprodução </ion-button>
+
+</ion-footer>
