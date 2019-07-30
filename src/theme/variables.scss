@@ -10,6 +10,8 @@
   --ion-color-primary-contrast-rgb: 255, 255, 255;
   --ion-color-primary-shade: #3171e0;
   --ion-color-primary-tint: #4c8dff;
+  --ion-toolbar-background: var(--ion-color-primary);
+  --toolbar-md-title-text-color: #ffffff;
 
   /** secondary **/
   --ion-color-secondary: #0cd1e8;
@@ -74,4 +76,12 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** transparent **/
+  --ion-color-transparent: #fafafa;
+  --ion-color-transparent-rgb: 245, 61, 61;;
+  --ion-color-transparent-contrast: #ffffff;
+  --ion-color-transparent-contrast-rgb: 255, 255, 255;
+  --ion-color-transparent-shade: #dcdcdc;
+  --ion-color-transparent-tint: #fbfbfb;
 }

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">#ANILHA 1</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" (click)='goBack($event)'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Nome:</ion-label>
+    <ion-input [(ngModel)]='bird.name'></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Gênero</ion-label>
+    <ion-select [(ngModel)]='bird.gender' placeholder="Selecione">
+      <ion-select-option value="Female">Feminino</ion-select-option>
+      <ion-select-option value="Male">Masculino</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Casal</ion-label>
+    <ion-select [(ngModel)]='bird.couple' placeholder="Selecione">
+      <ion-select-option *ngFor="let bird of (birdsMale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
+    </ion-select>
+    <ion-select [(ngModel)]='bird.couple' placeholder="Selecione">
+      <ion-select-option *ngFor="let bird of (birdsFemale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Cor</ion-label>
+    <ion-select [(ngModel)]='bird.color' placeholder="Selecione">
+      <ion-select-option value="Azul">Azul</ion-select-option>
+      <ion-select-option value="Verde">Verde</ion-select-option>
+      <ion-select-option value="Branco">Branco</ion-select-option>
+      <ion-select-option value="Preto">Preto</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Linhagem</ion-label>
+    <ion-select [(ngModel)]='bird.lineage' placeholder="Selecione">
+      <ion-select-option value="f">Female</ion-select-option>
+      <ion-select-option value="m">Male</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Pai</ion-label>
+    <ion-select [(ngModel)]='bird.father' placeholder="Selecione">
+      <ion-select-option *ngFor="let bird of (birdsMale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Mãe</ion-label>
+    <ion-select [(ngModel)]='bird.mother' placeholder="Selecione">
+      <ion-select-option *ngFor="let bird of (birdsFemale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-content>
+
+<ion-footer *ngIf="bird.id">
+  <ion-row no-padding text-center>
+    <ion-col size="6">
+      <ion-button expanded="block" fill="outline" color="danger" (click)="deleteBird()">
+        <ion-icon name="trash" slot="start"></ion-icon>
+        Deletar
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-button expanded="block" fill="solid" color="success" (click)="updateBird()">
+        <ion-icon name="save" slot="start"></ion-icon>
+        Salvar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
