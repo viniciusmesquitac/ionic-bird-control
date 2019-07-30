@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Adicionar Acasalamento</ion-title>
+    <ion-title color="light">Adicionar Acasalamento</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -16,5 +19,5 @@
       <ion-label class = 'name'> {{ femea }}</ion-label>
     </ion-item>
   </ion-list>
-  <ion-button expand = 'block' size = 'large' id = 'btnRecord' (click) = "recordMating()">Registrar Acasalemento</ion-button>
+  <ion-button expand = 'block' size = 'large' id = 'btnRecord' (click)="recordMating()">Registrar Acasalamento</ion-button>
 </ion-content>

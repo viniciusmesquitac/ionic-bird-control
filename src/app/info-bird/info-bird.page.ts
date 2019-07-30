@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BirdsService, Bird } from '../services/birds.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-info-bird',
@@ -10,6 +11,9 @@ import { BirdsService, Bird } from '../services/birds.service';
 })
 export class InfoBirdPage implements OnInit {
 
+  private birdsFemale: Observable<Bird[]>;
+  private birdsMale: Observable<Bird[]>;
+  
   constructor(private navCtrl: NavController, private activatedRoute: ActivatedRoute, private birdService: BirdsService,
     private toastCtrl: ToastController, private router: Router) { }
 
@@ -30,6 +34,8 @@ export class InfoBirdPage implements OnInit {
         this.bird = bird;
       });
     }
+    this.birdsMale = this.birdService.getMaleBirds();
+    this.birdsFemale = this.birdService.getFemaleBirds();
   }
 
   goBack(event) {

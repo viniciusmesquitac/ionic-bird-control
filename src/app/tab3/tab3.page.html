@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title color="light">
-      Acasalemento
+      Acasalamento
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,33 +11,32 @@
 <h2> Acasalados </h2>
 
 <ion-list>
-
-  <ion-item (click) = "ButtonClick()" >
+  <ion-item button (click) = "ButtonClick()" >
     <ion-thumbnail>
       <img src= "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      <h3> Acasalemento 1 </h3>
+      <h3> Acasalamento 1 </h3>
       <p> Teste de descrição 1 </p>
     </ion-label>
   </ion-item>
 
-  <ion-item  (click) = "ButtonClick()">
+  <ion-item  button (click) = "ButtonClick()">
     <ion-thumbnail>
       <img src = "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      <h3> Acasalemento 2 </h3>
+      <h3> Acasalamento 2 </h3>
       <p> Teste de descrição 2 </p>
     </ion-label>
   </ion-item>
 
-  <ion-item (click) = "ButtonClick()">
+  <ion-item button (click) = "ButtonClick()">
     <ion-thumbnail>
       <img src = "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      <h3> Acasalemento 3 </h3>
+      <h3> Acasalamento 3 </h3>
       <p> Teste de descrição 3</p>
     </ion-label>
   </ion-item>
@@ -46,41 +45,40 @@
 <h2> Não Acasalados </h2>
 
 <ion-list>
-
-  <ion-item (click) = "ButtonClick()">
+  <ion-item button (click) = "ButtonClick()">
     <ion-thumbnail>
       <img src= "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      <h3> Acasalemento 4 </h3>
+      <h3> Acasalamento 4 </h3>
       <p> Teste de descrição 4 </p>
     </ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-thumbnail (click) = "ButtonClick()">
+    <ion-thumbnail button (click) = "ButtonClick()">
       <img src = "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      <h3> Acasalemento 5 </h3>
+      <h3> Acasalamento 5 </h3>
       <p> Teste de descrição 5 </p>
     </ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-thumbnail (click) = "ButtonClick()">
+    <ion-thumbnail button (click) = "ButtonClick()">
       <img src = "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      <h3> Acasalemento 6 </h3>
+      <h3> Acasalamento 6 </h3>
       <p> Teste de descrição 6</p>
     </ion-label>
   </ion-item>
 </ion-list>
+</ion-content>
 
-<ion-fab vertical = 'bottom' horizontal = 'end' slot = 'fixed'>
+<ion-fab vertical ='bottom' horizontal = 'end' slot = 'fixed'>
   <ion-fab-button (click) ='addMating()'>
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
-</ion-content>

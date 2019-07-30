@@ -18,6 +18,7 @@ export interface Bird {
   providedIn: 'root'
 })
 export class BirdsService {
+  
   public birds: Observable<Bird[]>;
   public birdsFemale: Observable<Bird[]>;
   public birdsMale: Observable<Bird[]>;
@@ -84,7 +85,8 @@ export class BirdsService {
   }
 
   updateBird(bird: Bird): Promise<void> {
-    return this.birdCollection.doc(bird.id).update({name: bird.name});
+    return this.birdCollection.doc(bird.id).update({name: bird.name, gender: bird.gender, couple: bird.couple,
+      color: bird.color, lineage: bird.lineage, father: bird.father, mother: bird.mother});
   }
 
   deleteBird(id: string): Promise<void> {
