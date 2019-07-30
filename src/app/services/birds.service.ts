@@ -25,7 +25,8 @@ export class BirdsService {
   private birdCollection: AngularFirestoreCollection<Bird>;
 
   constructor(private afs: AngularFirestore) {
-    this.birdCollection = this.afs.collection<Bird>('bird');
+    
+    this.birdCollection = this.afs.collection<Bird>('bird', ref => ref.orderBy("name", "asc").limit(10));
     this.birds = this.birdCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -43,9 +44,9 @@ export class BirdsService {
 
   getBird(id: string) {
     return this.birdCollection.doc<Bird>(id).valueChanges().pipe(
+      take(1),
       map(bird => {
         bird.id = id;
-        bird.name = name;
         return bird;
       })
     );

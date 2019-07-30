@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class CreateBirdPage implements OnInit {
   private birdsFemale: Observable<Bird[]>;
   private birdsMale: Observable<Bird[]>;
+  public isFemale: Boolean = true;
+  public isMale: Boolean = true;
 
   constructor(private navCtrl: NavController, private activatedRoute: ActivatedRoute, private birdService: BirdsService,
               private toastCtrl: ToastController, private router: Router) { }
@@ -32,36 +34,14 @@ export class CreateBirdPage implements OnInit {
   }
 
   goBirdTab(event) {
+    this.router.navigateByUrl('/');
     this.navCtrl.navigateForward('/tabs');
   }
 
   ngOnInit() {
-    // loading bird
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
-      this.birdService.getBird(id).subscribe(bird => {
-        this.bird = bird;
-      });
-    }
     // loading famale and male birds array.
     this.birdsMale = this.birdService.getMaleBirds();
     this.birdsFemale = this.birdService.getFemaleBirds();
-  }
-
-  isFemale() {
-    if (this.bird.gender === 'Female') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  isMale() {
-    if (this.bird.gender === 'Male') {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   addBird() {
@@ -71,6 +51,19 @@ export class CreateBirdPage implements OnInit {
     }, err => {
       this.showToast('Ocorreu um erro ao adicionar, tente novamente.');
     });
+  }
+
+  selectCouple() {
+    if (this.bird.gender == 'Female') {
+      console.log("algo de certo esta correto")
+      this.isMale = false;
+      this.isFemale = true;
+    }
+    else {
+      console.log("algo de certo esta errado")
+      this.isFemale = false;
+      this.isMale = true;
+    }
   }
 
   showToast(msg) {

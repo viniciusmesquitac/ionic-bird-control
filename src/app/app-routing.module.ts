@@ -3,8 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  { path: 'create-bird', loadChildren: './create-bird/create-bird.module#CreateBirdPageModule' },
-  { path: 'info-bird', loadChildren: './info-bird/info-bird.module#InfoBirdPageModule' }
+  { path: 'bird', loadChildren: './create-bird/create-bird.module#CreateBirdPageModule' },
+  { path: 'bird/:id', loadChildren: './info-bird/info-bird.module#InfoBirdPageModule' }
 ];
 @NgModule({
   imports: [
