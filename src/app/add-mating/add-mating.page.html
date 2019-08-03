@@ -10,13 +10,13 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-button (click) = "openPicker(type = 'macho')">Selecione um Macho</ion-button>
-      <ion-label class = 'name'> {{ macho }} </ion-label>
+      <ion-button (click) = "openPicker('male')">Selecione um Macho</ion-button>
+      <ion-label class = 'name'> {{ male.name }} </ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-button (click) = "openPicker()">Selecione uma Fémea</ion-button>
-      <ion-label class = 'name'> {{ femea }}</ion-label>
+      <ion-button (click) = "openPicker('female')">Selecione uma Fémea</ion-button>
+      <ion-label class = 'name'> {{ female.name }}</ion-label>
     </ion-item>
   </ion-list>
   <ion-button expand = 'block' size = 'large' id = 'btnRecord' (click)="recordMating()">Registrar Acasalamento</ion-button>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="light">Reprodução</ion-title>
+    <ion-title color="light"> {{mating.name}} </ion-title>
     <ion-buttons slot="start">
       <ion-back-button color="light"></ion-back-button>
     </ion-buttons>
@@ -14,24 +14,23 @@
         <img src= "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
       </ion-thumbnail>
       <ion-label>
-        <h3> Pai </h3>
-        <p color="gray"> Descrição do Pai </p>
+        <h3> {{father.name}} </h3>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label margin="20">Anilha</ion-label>
-      <ion-label color="gray" class="ion-text-end">#1122323</ion-label>
+      <ion-label color="gray" class="ion-text-end">{{father.couple}}</ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label margin="20">Cor</ion-label>
-      <ion-label color="gray" class="ion-text-end">preto</ion-label>
+      <ion-label color="gray" class="ion-text-end">{{father.color}}</ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label margin="20">Linhagens</ion-label>
-      <ion-label color="gray" class="ion-text-end">Fi de alguém</ion-label>
+      <ion-label color="gray" class="ion-text-end">{{father.lineage}}</ion-label>
     </ion-item>
   </ion-list>
 
@@ -41,31 +40,31 @@
         <img src= "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
       </ion-thumbnail>
       <ion-label>
-        <h3> Mãe </h3>
-        <p color="gray"> Descrição da Mãe </p>
+        <h3> {{mother.name}} </h3>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label margin="20">Anilha</ion-label>
-      <ion-label color="gray" class="ion-text-end">#3333333</ion-label>
+      <ion-label color="gray" class="ion-text-end">{{mother.couple}}</ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label margin="20">Cor</ion-label>
-      <ion-label color="gray" class="ion-text-end">amarelo</ion-label>
+      <ion-label color="gray" class="ion-text-end">{{mother.color}}</ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label margin="20">Linhagens</ion-label>
-      <ion-label color="gray" class="ion-text-end">Fi de alguém</ion-label>
+      <ion-label color="gray" class="ion-text-end">{{mother.lineage}}</ion-label>
     </ion-item>
   </ion-list>
 
   <ion-item>
     <ion-label margin="20">Data de gala:</ion-label>
     <ion-label  color="gray" class="ion-text-end">
-      <ion-datetime displayFormat = "DD-MM-YYYY" placeholder="Selecione a Data"  class="ion-text-end"></ion-datetime>
+      <ion-datetime displayFormat = "DD-MM-YYYY" placeholder="Selecione a Data" 
+         class="ion-text-end" [(ngModel)] = "dateGale" (ionChange) = "changeStatus(this.dateGale)"></ion-datetime>
     </ion-label>
   </ion-item>
 </ion-content>
