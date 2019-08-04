@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BirdsService, Bird } from '../services/birds.service';
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ export class InfoBirdPage implements OnInit {
   public isMale: Boolean;
 
   constructor(private navCtrl: NavController, private activatedRoute: ActivatedRoute, private birdService: BirdsService,
-    private toastCtrl: ToastController, private router: Router) { }
+    private toastCtrl: ToastController, private router: Router, public alertController: AlertController) { }
 
   bird: Bird = {
     name: '',
@@ -40,8 +40,6 @@ export class InfoBirdPage implements OnInit {
     this.birdsFemale = this.birdService.getFemaleBirds();
 
     if (this.bird.gender=="Female") {this.isFemale=true} else {this.isMale=true}
-    this.birdsMale = this.birdService.getMaleBirds();
-    this.birdsFemale = this.birdService.getFemaleBirds();
   }
 
   goBack(event) {
@@ -87,6 +85,27 @@ export class InfoBirdPage implements OnInit {
       message: msg,
       duration: 2000
     }).then(toast => toast.present());
+  }
+
+  async deleteAlert() {
+    const alert = await this.alertController.create({
+      header: 'Exclusão',
+      message: 'Você tem certeza que deseja <strong>deletar</strong> este pássaro?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          }, {
+          text: 'Deletar',
+          handler: () => {
+            this.deleteBird();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }
