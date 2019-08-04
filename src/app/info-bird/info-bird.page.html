@@ -15,7 +15,7 @@
 
   <ion-item>
     <ion-label>Gênero</ion-label>
-    <ion-select [(ngModel)]='bird.gender' placeholder="Selecione">
+    <ion-select [(ngModel)]='bird.gender' placeholder="Selecione" (ionChange)='selectCouple()'>
       <ion-select-option value="Female">Feminino</ion-select-option>
       <ion-select-option value="Male">Masculino</ion-select-option>
     </ion-select>
@@ -23,10 +23,10 @@
 
   <ion-item>
     <ion-label>Casal</ion-label>
-    <ion-select [(ngModel)]='bird.couple' placeholder="Selecione">
+    <ion-select *ngIf="isFemale" [(ngModel)]='bird.couple' placeholder="Selecione">
       <ion-select-option *ngFor="let bird of (birdsMale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
     </ion-select>
-    <ion-select [(ngModel)]='bird.couple' placeholder="Selecione">
+    <ion-select *ngIf="isMale" [(ngModel)]='bird.couple' placeholder="Selecione">
       <ion-select-option *ngFor="let bird of (birdsFemale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
     </ion-select>
   </ion-item>

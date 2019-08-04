@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
 export class CreateBirdPage implements OnInit {
   private birdsFemale: Observable<Bird[]>;
   private birdsMale: Observable<Bird[]>;
-  public isFemale: Boolean = true;
-  public isMale: Boolean = true;
+  public isFemale: Boolean=false;
+  public isMale: Boolean=false;
 
   constructor(private navCtrl: NavController, private birdService: BirdsService,
               private toastCtrl: ToastController, private router: Router) { }
@@ -42,6 +42,7 @@ export class CreateBirdPage implements OnInit {
     // loading famale and male birds array.
     this.birdsMale = this.birdService.getMaleBirds();
     this.birdsFemale = this.birdService.getFemaleBirds();
+    if (this.bird.gender=="Female") {this.isFemale=true} else {this.isMale=true}
   }
 
   addBird() {
@@ -58,11 +59,14 @@ export class CreateBirdPage implements OnInit {
       console.log("algo de certo esta correto")
       this.isMale = false;
       this.isFemale = true;
+      this.birdsMale = this.birdService.getMaleBirds();
+    
     }
     else {
       console.log("algo de certo esta errado")
       this.isFemale = false;
       this.isMale = true;
+      this.birdsFemale = this.birdService.getFemaleBirds();
     }
   }
 

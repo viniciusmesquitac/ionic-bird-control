@@ -13,7 +13,9 @@ export class InfoBirdPage implements OnInit {
 
   private birdsFemale: Observable<Bird[]>;
   private birdsMale: Observable<Bird[]>;
-  
+  public isFemale: Boolean;
+  public isMale: Boolean;
+
   constructor(private navCtrl: NavController, private activatedRoute: ActivatedRoute, private birdService: BirdsService,
     private toastCtrl: ToastController, private router: Router) { }
 
@@ -34,6 +36,10 @@ export class InfoBirdPage implements OnInit {
         this.bird = bird;
       });
     }
+    this.birdsMale = this.birdService.getMaleBirds();
+    this.birdsFemale = this.birdService.getFemaleBirds();
+
+    if (this.bird.gender=="Female") {this.isFemale=true} else {this.isMale=true}
     this.birdsMale = this.birdService.getMaleBirds();
     this.birdsFemale = this.birdService.getFemaleBirds();
   }
@@ -57,6 +63,23 @@ export class InfoBirdPage implements OnInit {
     }, err => {
       this.showToast('Ocorreu um erro ao deletar, tente novamente.');
     });
+  }
+
+  
+  selectCouple() {
+    if (this.bird.gender == 'Female') {
+      console.log("the bird change to female")
+      this.isMale = false;
+      this.isFemale = true;
+      this.birdsMale = this.birdService.getMaleBirds();
+    
+    }
+    else {
+      console.log("the bird change to male")
+      this.isFemale = false;
+      this.isMale = true;
+      this.birdsFemale = this.birdService.getFemaleBirds();
+    }
   }
 
   showToast(msg) {
