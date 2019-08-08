@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PickerController, AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
-import { BirdsService, Bird, Mating } from '../services/birds.service';
+import { BirdsService, Bird } from '../services/birds.service';
+import { MatingService, Mating } from '../services/mating.service';
 import { Observable } from 'rxjs'
 
 @Component({
@@ -22,7 +23,8 @@ export class AddMatingPage implements OnInit {
   constructor(private pickerCtrl: PickerController,
     private alertCtrl : AlertController,
     public navCtrl: NavController,
-    private birdService: BirdsService) {}
+    private birdService: BirdsService,
+    private matingService: MatingService) {}
 
   ngOnInit() {
     this.femaleBirds = this.birdService.getFemaleBirds();
@@ -154,7 +156,7 @@ export class AddMatingPage implements OnInit {
             dateFinalMating : null,
             isMating : false
           };
-          this.birdService.createMating(this.mating);
+          this.matingService.createMating(this.mating);
           const confirmAlert = await this.alertCtrl.create({
             header: 'Sucesso',
             message: 'Parabéns,'+ this.male.name +' e ' + this.female.name + ' começaram a acasalar.',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { BirdsService, Mating} from '../services/birds.service';
+import { MatingService, Mating} from '../services/mating.service';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-tab3',
@@ -12,10 +12,10 @@ export class Tab3Page implements OnInit{
 
   private matings: Observable<Mating[]>;
 
-  constructor(public navCtrl: NavController, private birdsService: BirdsService) {}
+  constructor(public navCtrl: NavController, private matingService: MatingService) {}
 
   ngOnInit(){
-    this.matings = this.birdsService.readMatings();
+    this.matings = this.matingService.readMatings();
   }
 
   ButtonClick(){

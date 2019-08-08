@@ -10,8 +10,10 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-button (click) = "openPicker('male')">Selecione um Macho</ion-button>
-      <ion-label class = 'name'> {{ male.name }} </ion-label>
+      <ion-label>Macho</ion-label>
+      <ion-select placeholder="Selecione um">
+        <ion-select-option *ngFor = "let bird of (maleBirds | async)" value = "bird.id"> {{bird.name}} </ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>

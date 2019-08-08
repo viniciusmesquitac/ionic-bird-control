@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BirdsService, Bird, Mating } from '../services/birds.service';
+import { BirdsService, Bird } from '../services/birds.service';
+import { MatingService, Mating} from '../services/mating.service';
 import { NavController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -40,12 +41,12 @@ export class InfoMatingPage implements OnInit {
   }
   
   constructor(private navCtrl: NavController, private activatedRouter: ActivatedRoute, private birdsService: BirdsService,
-    private toastCtrl: ToastController, private router: Router) {}
+    private toastCtrl: ToastController, private router: Router, private matingService: MatingService) {}
 
   ngOnInit() {
     let matingId = this.activatedRouter.snapshot.paramMap.get('id');
     if (matingId){
-      this.birdsService.readMating(matingId).subscribe( mating =>{
+      this.matingService.readMating(matingId).subscribe( mating =>{
         this.mating =  mating;
         this.birdsService.getBird(this.mating.idFather).subscribe( async father => {
           this.father =   father;
@@ -69,7 +70,7 @@ export class InfoMatingPage implements OnInit {
       dateFinalMating: this.mating.dateFinalMating,
       isMating: true
     } 
-    this.birdsService.updateMating(mating);
+    this.matingService.updateMating(mating);
   }
 
 }

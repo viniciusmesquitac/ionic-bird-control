@@ -14,16 +14,6 @@ export interface Bird {
   mother?: string;
 }
 
-export interface Mating{
-  id?: string;
-  name?: string;
-  idFather?: string;
-  idMother?: string;
-  dateInitMating: Date;
-  dateGale: Date;
-  isMating: boolean;
-  dateFinalMating: Date;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -34,10 +24,8 @@ export class BirdsService {
   public birdsFemale: Observable<Bird[]>;
   public birdsMale: Observable<Bird[]>;
 
-  public matings: Observable<Mating[]>;
 
   private birdCollection: AngularFirestoreCollection<Bird>;
-  private matingCollection: AngularFirestoreCollection<Mating>;
 
   constructor(private afs: AngularFirestore) {
     
@@ -48,17 +36,6 @@ export class BirdsService {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { id, ...data };
-        });
-      })
-    );
-
-    this.matingCollection = this.afs.collection<Mating>('mating', ref => ref.orderBy('name','asc').limit(10));
-    this.matings = this.matingCollection.snapshotChanges().pipe(
-      map(actions =>{
-        return actions.map(a =>{
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ...data};  
         });
       })
     );
@@ -145,32 +122,4 @@ export class BirdsService {
       console.log('you aren\'t filtering');
     }
   }
-
-  createMating(mating: Mating): Promise<DocumentReference> {
-    return this.matingCollection.add(mating);
-  }
-
-  readMatings(): Observable<Mating[]>{
-    return this.matings;
-  }
-
-  readMating(id: string){
-    return this.matingCollection.doc<Mating>(id).valueChanges().pipe(
-      take(1),
-      map(mating =>{
-        mating.id = id;
-        return mating;
-      })
-    );
-  }
-
-  updateMating(mating: Mating): Promise<void>{
-    return this.matingCollection.doc(mating.id).update({name: mating.name, idFather: mating.idFather, idMother: mating.idMother,
-      dateInitMating: mating.dateInitMating, dateGale: mating.dateGale,dateFinalMating: mating.dateFinalMating, isMating: mating.isMating});
-  }
-
-  deleteMating(mating: Mating): Promise<void>{
-    return this.matingCollection.doc(mating.id).delete();
-  }
-
 }
