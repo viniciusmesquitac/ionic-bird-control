@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BirdsService, Bird } from '../services/birds.service';
 import { MatingService, Mating} from '../services/mating.service';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -41,7 +41,7 @@ export class InfoMatingPage implements OnInit {
   }
   
   constructor(private navCtrl: NavController, private activatedRouter: ActivatedRoute, private birdsService: BirdsService,
-    private toastCtrl: ToastController, private router: Router, private matingService: MatingService) {}
+    private toastCtrl: ToastController, private router: Router, private matingService: MatingService, private alertCtrl : AlertController) {}
 
   ngOnInit() {
     let matingId = this.activatedRouter.snapshot.paramMap.get('id');
@@ -73,4 +73,28 @@ export class InfoMatingPage implements OnInit {
     this.matingService.updateMating(mating);
   }
 
+  async deleteMating(){
+    let confirm = false;
+    const alert = await this.alertCtrl.create({
+      header: 'Atenção!',
+      message: 'Você realmente deseja deletar este acasalamento?',
+      buttons:[{
+        text : 'Sim',
+        handler:() => {
+          confirm = true;
+        }
+      },{
+        text: 'Não',
+        role : 'cancel',
+      }]
+    });
+
+    await alert.present();
+    alert.onDidDismiss().then( data =>{
+      if(confirm){
+        this.matingService.deleteMating(this.mating);
+        this.navCtrl.navigateForward('/tabs');
+      }
+    });
+  }
 }

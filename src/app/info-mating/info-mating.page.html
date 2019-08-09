@@ -70,5 +70,19 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button expand="block"><h5>Finalizar Reprodução</h5></ion-button>
+   <ion-row text-center no-padding>
+    <ion-col size="6">
+      <ion-button expanded="block" fill="outline" color="danger" (click)="deleteMating()">
+        <ion-icon name="trash" slot="start"></ion-icon>
+        Deletar
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-button expanded="block" fill="solid" color="success" (click)="finishMating()">
+        <ion-icon name="save" slot="start"></ion-icon>
+        Finalizar 
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-footer>
