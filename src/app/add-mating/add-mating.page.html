@@ -10,15 +10,17 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label>Macho</ion-label>
-      <ion-select placeholder="Selecione um">
-        <ion-select-option *ngFor = "let bird of (maleBirds | async)" value = "bird.id"> {{bird.name}} </ion-select-option>
+      <ion-label>Macho </ion-label>
+      <ion-select [(ngModel)] = "mating.idFather" (ionChange) = 'selectMale()' placeholde = "Selecione">
+        <ion-select-option *ngFor = "let bird of (maleBirds | async)" value = {{bird.id}}> {{bird.name}} </ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-button (click) = "openPicker('female')">Selecione uma Fémea</ion-button>
-      <ion-label class = 'name'> {{ female.name }}</ion-label>
+      <ion-label>Fêmea </ion-label>
+      <ion-select [(ngModel)] = "mating.idMother" (ionChange) = "selectFemale()" placeholder = "Selecione">
+        <ion-select-option *ngFor = "let bird of (femaleBirds | async)" value = {{bird.id}}> {{bird.name}}</ion-select-option>
+      </ion-select>
     </ion-item>
   </ion-list>
   <ion-button expand = 'block' size = 'large' id = 'btnRecord' (click)="recordMating()">Registrar Acasalamento</ion-button>

@@ -12,13 +12,21 @@ import { Observable } from 'rxjs'
 })
 
 export class AddMatingPage implements OnInit {
-  public male : Bird;
-  public female : Bird;
-  public mating: Mating;
+  private maleName : string;
+  private femaleName: string;
+
+  mating: Mating = {
+    name : '',
+      idFather: '',
+      idMother: '',
+      dateInitMating:  new Date(),
+      dateGale : null,
+      dateFinalMating : null,
+      isMating : false
+  }
 
   private maleBirds : Observable<Bird[]>;
   private femaleBirds : Observable<Bird[]>;
-  private columnOptions : Bird[];
 
   constructor(private pickerCtrl: PickerController,
     private alertCtrl : AlertController,
@@ -29,93 +37,24 @@ export class AddMatingPage implements OnInit {
   ngOnInit() {
     this.femaleBirds = this.birdService.getFemaleBirds();
     this.maleBirds = this.birdService.getMaleBirds();
-    this.female = {
-      name: '',
-      gender: '',
-      couple: '',
-      color: '',
-      lineage: '',
-      father: '',
-      mother: '',
-    };
-    this.male = {
-      name: '',
-      gender: '',
-      couple: '',
-      color: '',
-      lineage: '',
-      father: '',
-      mother: '',
-    };
+    this.maleName = '';
+    this.femaleName = '';
   }
 
-  async openPicker(type){
-    if (type == 'female'){
-      this.femaleBirds.subscribe(async birds => {
-        this.columnOptions = await birds;
-      });
-    }
-    else{
-      this.maleBirds.subscribe(async birds =>{
-        this.columnOptions = await birds;
-      });
-    }
-
-    let confirm = false;
-
-    const  picker = await this.pickerCtrl.create({
-      columns : this.getColumns(1,this.columnOptions),
-      buttons : [
-        {
-          text : 'cancel',
-          role : 'cancel'
-        },
-        {
-          text : 'Confirm',
-          handler :  (value) =>{
-            confirm = true;
-          }
-        }
-      ]
+  selectMale(){
+    this.birdService.getBird(this.mating.idFather).subscribe(async bird =>{
+      this.maleName = await bird.name;
     });
-
-    await picker.present();
-    picker.onDidDismiss().then(async data =>{
-      if (confirm){
-        let col = await picker.getColumn('col-0');
-        if (type == 'female') this.female = this.columnOptions[col.selectedIndex] ;
-        else this.male = this.columnOptions[col.selectedIndex];
-      }
-    });
-
   }
 
-  
-  getColumns(numOptions,columnOptions){
-    console.log(''+columnOptions[0].name);
-    let columns = [];
-    columns.push({
-      name: 'col-0',
-      options: this.getColumnOptions(numOptions,columnOptions)
+  selectFemale(){
+    this.birdService.getBird(this.mating.idMother).subscribe(async bird=> {
+      this.femaleName = await bird.name;
     });
-
-    return columns;
-  }
-
-  getColumnOptions(numOptions,columnOptions){
-    console.log(''+columnOptions[0].name);
-    let options = [];
-    for (let i = 0; i< numOptions; i++){
-      options.push({
-        text: columnOptions[i].name,
-        value: i
-      });
-    }
-    return options;
   }
 
   async recordMating(){
-    if (this.male.name == '' || this.female.name == ''){
+    if (this.mating.idFather == '' || this.mating.idMother == ''){
       const alert = await this.alertCtrl.create({
         header: 'Cuidado',
         message: 'É necessário escolher tanto o pássaro macho quanto a fêmea. Não deixe alguma opção em branco.',
@@ -147,19 +86,11 @@ export class AddMatingPage implements OnInit {
       await alert.present();
       await alert.onDidDismiss().then(async (data) =>{
         if(confirm){
-          this.mating = {
-            name : this.male.name + ' com ' + this.female.name,
-            idFather: this.male.id,
-            idMother: this.female.id,
-            dateInitMating: new Date(),
-            dateGale : null,
-            dateFinalMating : null,
-            isMating : false
-          };
+          this.mating.name = this.maleName+ " com " + this.femaleName;
           this.matingService.createMating(this.mating);
           const confirmAlert = await this.alertCtrl.create({
             header: 'Sucesso',
-            message: 'Parabéns,'+ this.male.name +' e ' + this.female.name + ' começaram a acasalar.',
+            message: 'Parabéns,'+ this.mating.name + ' começaram a acasalar.',
             buttons: [{
               text: 'Okay',
               handler: ()=> {
