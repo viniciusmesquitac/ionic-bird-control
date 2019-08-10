@@ -8,16 +8,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list class="ion-padding-top">
     <ion-item>
-      <ion-label>Macho </ion-label>
-      <ion-select [(ngModel)] = "mating.idFather" (ionChange) = 'selectMale()' placeholde = "Selecione">
+      <ion-label>Macho</ion-label>
+      <ion-select [(ngModel)] = "mating.idFather" (ionChange) = "selectMale()" placeholder = "Selecione">
         <ion-select-option *ngFor = "let bird of (maleBirds | async)" value = {{bird.id}}> {{bird.name}} </ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label>Fêmea </ion-label>
+      <ion-label>Fêmea</ion-label>
       <ion-select [(ngModel)] = "mating.idMother" (ionChange) = "selectFemale()" placeholder = "Selecione">
         <ion-select-option *ngFor = "let bird of (femaleBirds | async)" value = {{bird.id}}> {{bird.name}}</ion-select-option>
       </ion-select>

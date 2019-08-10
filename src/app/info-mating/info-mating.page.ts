@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BirdsService, Bird } from '../services/birds.service';
 import { MatingService, Mating} from '../services/mating.service';
-import { NavController, ToastController, AlertController } from '@ionic/angular';
+import { NavController, ToastController, AlertController, ModalController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatingFinalizeModalPagePage } from '../mating-finalize-modal-page/mating-finalize-modal-page.page';
 
 @Component({
   selector: 'app-info-mating',
@@ -41,18 +42,19 @@ export class InfoMatingPage implements OnInit {
   }
   
   constructor(private navCtrl: NavController, private activatedRouter: ActivatedRoute, private birdsService: BirdsService,
-    private toastCtrl: ToastController, private router: Router, private matingService: MatingService, private alertCtrl : AlertController) {}
+    private toastCtrl: ToastController, private router: Router, private matingService: MatingService, private alertCtrl : AlertController,
+    public modalController: ModalController, public alertController: AlertController) {}
 
   ngOnInit() {
     let matingId = this.activatedRouter.snapshot.paramMap.get('id');
     if (matingId){
       this.matingService.readMating(matingId).subscribe( mating =>{
-        this.mating =  mating;
+        this.mating = mating;
         this.birdsService.getBird(this.mating.idFather).subscribe( async father => {
-          this.father =   father;
+          this.father = father;
         });
         this.birdsService.getBird(this.mating.idMother).subscribe( mother =>{
-          this.mother =  mother;
+          this.mother = mother;
         });
       });
     }    
@@ -79,13 +81,13 @@ export class InfoMatingPage implements OnInit {
       header: 'Atenção!',
       message: 'Você realmente deseja deletar este acasalamento?',
       buttons:[{
-        text : 'Sim',
+        text : 'NÃO',
+        role: 'cancel'
+      },{
+        text: 'SIM',
         handler:() => {
           confirm = true;
         }
-      },{
-        text: 'Não',
-        role : 'cancel',
       }]
     });
 
@@ -97,4 +99,52 @@ export class InfoMatingPage implements OnInit {
       }
     });
   }
+
+  finishMating() {
+      this.FinalizeAlert()
+  }
+
+  async FinalizeAlert() {
+    const alert = await this.alertController.create({
+      header: '',
+      message: 'Essa Reprodução Gerou Ovos?',
+      buttons: [
+        {
+          text: 'NÃO',
+          handler: () => {
+            this.showToast("Aguarde a reprodução gerar ovos :)");
+          },
+          cssClass: 'secondary',
+          }, {
+          text: 'SIM',
+          handler: () => {
+            this.presentModal();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: MatingFinalizeModalPagePage,
+      componentProps: {
+        'idMother': this.mother.id,
+        'idFather': this.father.id,
+        'idMating': this.mating.id
+      }
+    });
+    return await modal.present();
+  }
+
+  showToast(msg) {
+    this.toastCtrl.create({
+      message: msg,
+      duration: 1000
+    }).then(toast => toast.present());
+  }
+
 }

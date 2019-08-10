@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">Adicionar Ovos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color= "light" (click)="dismissModal()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Quantidade de Ovos</ion-label>
+    <ion-input type= "number" [(ngModel)]='amount'></ion-input>
+  </ion-item>
+
+
+<section>
+  <ion-button expand="block" (click)='createEggs()'>ADICIONAR</ion-button>
+</section>

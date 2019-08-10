@@ -7,35 +7,37 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-text color="gray">Acasalados</ion-text>
+    </ion-list-header>
+    <ion-item button *ngFor="let mating of (matings | async)" [routerLink]="['/mating',mating.id]">
+      <ion-thumbnail>
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-thumbnail>
+      <ion-label>
+        <h3> {{ mating.name }} </h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-<h2> Acasalados </h2>
-<ion-list *ngFor = "let mating of (matings | async)">
-  <ion-item button *ngIf = "mating.isMating == true" [routerLink]= "['/mating',mating.id]">
-    <ion-thumbnail>
-      <img src= "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-    </ion-thumbnail>
-    <ion-label>
-      <h3> {{ mating.name }} </h3>
-    </ion-label>
-  </ion-item>
-</ion-list>>
-
-<h2> Não Acasalados </h2>
-
-<ion-list *ngFor = "let mating of (matings | async)">
-  <ion-item button *ngIf = "mating.isMating == false" [routerLink] = "['/mating',mating.id]">
-    <ion-thumbnail>
-      <img src= "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-    </ion-thumbnail>
-    <ion-label>
-      <h3> {{mating.name}} </h3>
-    </ion-label>
-  </ion-item>
-</ion-list>
+  <ion-list>
+    <ion-list-header>
+      <ion-text color="gray">Não acasalados</ion-text>
+    </ion-list-header>
+    <ion-item button *ngFor="let mating of (matings | async)" [routerLink]="['/mating',mating.id]">
+      <ion-thumbnail>
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-thumbnail>
+      <ion-label>
+        <h3> {{mating.name}} </h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
-<ion-fab vertical ='bottom' horizontal = 'end' slot = 'fixed'>
-  <ion-fab-button (click) ='addMating()'>
+<ion-fab vertical='bottom' horizontal='end' slot='fixed'>
+  <ion-fab-button (click)='addMating()'>
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

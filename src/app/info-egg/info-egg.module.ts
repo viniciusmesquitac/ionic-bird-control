@@ -5,13 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InfoMatingPage} from './info-mating.page';
-import { MatingFinalizeModalPagePage } from '../mating-finalize-modal-page/mating-finalize-modal-page.page';
+import { InfoEggPage } from './info-egg.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: InfoMatingPage
+    component: InfoEggPage
   }
 ];
 
@@ -22,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [InfoMatingPage]
+  declarations: [InfoEggPage]
 })
-export class InfoMatingPageModule {}
+export class InfoEggPageModule {}

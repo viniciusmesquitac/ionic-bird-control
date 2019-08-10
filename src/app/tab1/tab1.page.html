@@ -3,11 +3,9 @@
     <ion-title color="light" *ngIf="!isSearchOpened">
       Passaros
     </ion-title>
-    <ion-item slot="end" *ngIf="!isSearchOpened" (click)="isSearchOpened=true">
-      <ion-icon name="search" color="light"></ion-icon>
-    </ion-item>
-    <ion-searchbar 
-    animated 
+      <ion-icon [ngClass]="ion-icon-teste" name="search" color="light" slot="end" *ngIf="!isSearchOpened" (click)="isSearchOpened=true" size="large"></ion-icon>
+    <ion-searchbar
+    animated
     placeholder="Buscar Passaros..." 
     *ngIf="isSearchOpened" 
     showCancelButton="always"
@@ -25,8 +23,8 @@
     </ion-thumbnail>
     <ion-label>
       {{ bird.name }}
-      <ion-icon slot="icon-only" *ngIf ="bird.gender =='Male'"src="assets/macho.svg"></ion-icon>
-      <ion-icon slot="icon-only" *ngIf ="bird.gender =='Female'"src="assets/femea.svg"></ion-icon>
+      <ion-icon size="small" slot="icon-only" *ngIf ="bird.gender =='Male'"src="assets/macho.svg"></ion-icon>
+      <ion-icon  size="small" slot="icon-only" *ngIf ="bird.gender =='Female'"src="assets/femea.svg"></ion-icon>
     </ion-label>
   </ion-item>
 

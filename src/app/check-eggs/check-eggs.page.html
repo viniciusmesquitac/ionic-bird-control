@@ -3,18 +3,24 @@
     <ion-title color="light" *ngIf="!isSearchOpened">
       Ovos
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-item button *ngFor="let couple of (coupleBirds | async)" [routerLink]="['/couple', couple.id]">
+  <ion-item button *ngFor="let egg of (eggsFromCouple | async)" [routerLink]="['/egg', egg.id]">
     <ion-thumbnail slot="start">
       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-thumbnail>
     <ion-label>
-      Ovos de {{ couple.name }}
+      {{egg.name}}
     </ion-label>
   </ion-item>
 
 </ion-content>
+

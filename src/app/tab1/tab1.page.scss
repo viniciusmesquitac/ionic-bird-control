@@ -5,4 +5,10 @@
 
 ion-item {
   --ion-background-color: primary;
+  --box-shadow: none;
+}
+
+ion-icon-teste{
+  margin-right: 20px !important;
+  font-size: 30px; //Preferred size here
 }
