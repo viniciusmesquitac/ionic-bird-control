@@ -3,14 +3,15 @@
     <ion-title color="light" *ngIf="!isSearchOpened">
       Passaros
     </ion-title>
-      <ion-icon [ngClass]="ion-icon-teste" name="search" color="light" slot="end" *ngIf="!isSearchOpened" (click)="isSearchOpened=true" size="large"></ion-icon>
+      <ion-icon [ngClass]="ion-icon-teste" name="search" color="light" *ngIf="!isSearchOpened" (click)="isSearchOpened=true" size="large" slot="end"></ion-icon>
     <ion-searchbar
     animated
     placeholder="Buscar Passaros..." 
-    *ngIf="isSearchOpened" 
+    *ngIf="isSearchOpened"
+    mode="md"
     showCancelButton="always"
     (ionCancel)="isSearchOpened=false; refreshBirds($event);"
-    (ionChange)="filterBirds($event)">
+    (ionChange)="filterList($event)">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>

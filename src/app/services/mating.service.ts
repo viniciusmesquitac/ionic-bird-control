@@ -25,7 +25,7 @@ export class MatingService {
 
   private matingCollection: AngularFirestoreCollection<Mating>;
 
-  constructor(private afs: AngularFirestore) { 
+  constructor(private afs: AngularFirestore) {
     this.matingCollection = this.afs.collection<Mating>('mating', ref => ref.orderBy('name','asc').limit(10));
     this.matings = this.matingCollection.snapshotChanges().pipe(
       map(actions =>{

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Bird, BirdsService } from '../services/birds.service';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tab1',
@@ -33,6 +34,26 @@ export class Tab1Page implements OnInit {
     this.text = event.target.value;
     this.birdService.searchBird(this.text);
     this.birds = this.birdService.getBirds();
+  }
+
+  filterList(event) {
+    this.birds = this.birdService.getBirds();
+    var typed = event.target.value
+
+    if (!typed) {
+      return;
+    }
+    
+    this.birds = this.birds.pipe(
+      map(result => {
+        return result.filter(bird => {
+          if(bird.name.toLowerCase().indexOf(typed.toLowerCase()) > -1){
+            return true;
+          }
+          return false;
+        })
+      })
+    )
   }
 
   refreshBirds(event) {

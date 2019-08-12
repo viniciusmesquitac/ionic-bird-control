@@ -8,7 +8,6 @@ ion-item {
   --box-shadow: none;
 }
 
-ion-icon-teste{
+ion-icon[slot=end] {
   margin-right: 20px !important;
-  font-size: 30px; //Preferred size here
 }
