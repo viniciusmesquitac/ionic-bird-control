@@ -12,6 +12,8 @@ export interface Bird {
   lineage?: string;
   father?: string;
   mother?: string;
+  anilha?: string;
+  anilhado: boolean;
 }
 
 
@@ -29,7 +31,7 @@ export class BirdsService {
 
   constructor(private afs: AngularFirestore) {
     
-    this.birdCollection = this.afs.collection<Bird>('bird', ref => ref.orderBy("name", "asc").limit(10));
+    this.birdCollection = this.afs.collection<Bird>('bird', ref => ref.orderBy("name", "asc"));
     this.birds = this.birdCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -87,7 +89,7 @@ export class BirdsService {
   }
 
   updateBird(bird: Bird): Promise<void> {
-    return this.birdCollection.doc(bird.id).update({name: bird.name, gender: bird.gender, couple: bird.couple,
+    return this.birdCollection.doc(bird.id).update({name: bird.name, anilha:bird.anilha, gender: bird.gender, couple: bird.couple,
       color: bird.color, lineage: bird.lineage, father: bird.father, mother: bird.mother});
   }
 

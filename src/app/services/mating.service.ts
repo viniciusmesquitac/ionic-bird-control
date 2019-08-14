@@ -12,6 +12,7 @@ export interface Mating{
   dateInitMating: Date;
   dateGale: Date;
   isMating: boolean;
+  generateEggs: false;
   dateFinalMating: Date;
 }
 
@@ -26,7 +27,7 @@ export class MatingService {
   private matingCollection: AngularFirestoreCollection<Mating>;
 
   constructor(private afs: AngularFirestore) {
-    this.matingCollection = this.afs.collection<Mating>('mating', ref => ref.orderBy('name','asc').limit(10));
+    this.matingCollection = this.afs.collection<Mating>('mating', ref => ref.orderBy('name','asc'));
     this.matings = this.matingCollection.snapshotChanges().pipe(
       map(actions =>{
         return actions.map(a =>{

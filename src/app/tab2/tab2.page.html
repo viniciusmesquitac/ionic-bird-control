@@ -3,6 +3,9 @@
     <ion-title color="light" *ngIf="!isSearchOpened">
       Ovos
     </ion-title>
+    <ion-buttons slot="start">
+        <ion-menu-button color="light"></ion-menu-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +13,7 @@
 
   <ion-item button *ngFor="let couple of (coupleBirds | async)" [routerLink]="['/couple', couple.id]">
     <ion-thumbnail slot="start">
-      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      <img src="https://www.gravatar.com/userimage/166912858/94da2a9d05237b126b16465d2b21fb94?size=120">
     </ion-thumbnail>
     <ion-label>
       Ovos de {{ couple.name }}

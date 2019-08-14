@@ -27,6 +27,8 @@ export class InfoBirdPage implements OnInit {
     lineage: '',
     father: '',
     mother: '',
+    anilha:'',
+    anilhado: false,
   };
 
   ngOnInit() {
@@ -47,6 +49,9 @@ export class InfoBirdPage implements OnInit {
   }
 
   updateBird() {
+    if(this.bird.anilha != '') {
+      this.bird.anilhado = true;
+    }
     this.birdService.updateBird(this.bird).then(() =>{
       this.showToast('Pássaro Atualizado!');
     }, err => {

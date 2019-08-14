@@ -25,6 +25,8 @@ export class InfoEggPage implements OnInit {
     lineage: '',
     father: '',
     mother: '',
+    anilha:'',
+    anilhado: false,
   };
   
   mother: Bird = {
@@ -35,6 +37,8 @@ export class InfoEggPage implements OnInit {
     lineage: '',
     father: '',
     mother: '',
+    anilha:'',
+    anilhado: false,
   };
 
   bird: Bird = {
@@ -45,6 +49,8 @@ export class InfoEggPage implements OnInit {
     lineage: '',
     father: '',
     mother: '',
+    anilha:'',
+    anilhado: false,
   };
 
 

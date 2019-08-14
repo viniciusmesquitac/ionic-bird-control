@@ -4,6 +4,7 @@ import { MatingService, Mating} from '../services/mating.service';
 import { NavController, ToastController, AlertController, ModalController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatingFinalizeModalPagePage } from '../mating-finalize-modal-page/mating-finalize-modal-page.page';
+import { generate } from 'rxjs';
 
 @Component({
   selector: 'app-info-mating',
@@ -19,6 +20,8 @@ export class InfoMatingPage implements OnInit {
     lineage: '',
     father: '',
     mother: '',
+    anilha:'',
+    anilhado: false,
   };
   
   mother: Bird = {
@@ -29,6 +32,8 @@ export class InfoMatingPage implements OnInit {
     lineage: '',
     father: '',
     mother: '',
+    anilha:'',
+    anilhado: false,
   };
 
   mating: Mating = {
@@ -38,7 +43,8 @@ export class InfoMatingPage implements OnInit {
     dateInitMating: null,
     dateGale : null,
     dateFinalMating : null,
-    isMating : false
+    isMating : false,
+    generateEggs: false,
   }
   
   constructor(private navCtrl: NavController, private activatedRouter: ActivatedRoute, private birdsService: BirdsService,
@@ -70,7 +76,8 @@ export class InfoMatingPage implements OnInit {
       dateInitMating: this.mating.dateInitMating,
       dateGale: date,
       dateFinalMating: this.mating.dateFinalMating,
-      isMating: true
+      isMating: true,
+      generateEggs: false
     } 
     this.matingService.updateMating(mating);
   }
@@ -107,7 +114,7 @@ export class InfoMatingPage implements OnInit {
   async FinalizeAlert() {
     const alert = await this.alertController.create({
       header: '',
-      message: 'Essa Reprodução Gerou Ovos?',
+      message: 'Essa reprodução gerou ovos?',
       buttons: [
         {
           text: 'NÃO',

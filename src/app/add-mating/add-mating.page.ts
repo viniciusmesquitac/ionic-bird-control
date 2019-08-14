@@ -22,6 +22,7 @@ export class AddMatingPage implements OnInit {
       dateInitMating:  new Date(),
       dateGale : null,
       dateFinalMating : null,
+      generateEggs: false,
       isMating : false
   }
 
@@ -56,9 +57,9 @@ export class AddMatingPage implements OnInit {
   async recordMating(){
     if (this.mating.idFather == '' || this.mating.idMother == ''){
       const alert = await this.alertCtrl.create({
-        header: 'Cuidado',
-        message: 'É necessário escolher tanto o pássaro macho quanto a fêmea. Não deixe alguma opção em branco.',
-        buttons:  ['Okay']
+        header: 'Atenção',
+        message: 'Preencha todos os campos',
+        buttons:  ['OK']
       });
 
       await alert.present();
@@ -68,17 +69,17 @@ export class AddMatingPage implements OnInit {
   
       const alert = await this.alertCtrl.create({
         header: 'Atenção',
-        subHeader: 'Confirmação de acasalamento',
         message: 'Você tem certeza que quer acasalar estes dois pássaros?',
-        buttons: [{
-          text: 'Okay',
+        buttons: [
+          {
+          text: 'CANCELAR',
           handler: () =>{
-            confirm = true;
           }
         },
         {
-          text: 'Cancel',
+        text: 'SIM',
           handler: () =>{
+            confirm = true;
           }
         }]
       });
@@ -90,7 +91,7 @@ export class AddMatingPage implements OnInit {
           this.matingService.createMating(this.mating);
           const confirmAlert = await this.alertCtrl.create({
             header: 'Sucesso',
-            message: 'Parabéns,'+ this.mating.name + ' começaram a acasalar.',
+            message: 'Parabéns, '+ this.mating.name + ' agora estão juntos!',
             buttons: [{
               text: 'Okay',
               handler: ()=> {

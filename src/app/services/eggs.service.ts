@@ -27,7 +27,7 @@ export class EggsService {
   private matingCollection: AngularFirestoreCollection<Mating>;
 
   constructor(private afs: AngularFirestore) { 
-    this.eggCollection = this.afs.collection<Egg>('eggs', ref => ref.orderBy("name", "asc").limit(10));
+    this.eggCollection = this.afs.collection<Egg>('eggs', ref => ref.orderBy("name", "asc"));
     this.eggs = this.eggCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -39,7 +39,7 @@ export class EggsService {
     );
 
 
-    this.matingCollection = this.afs.collection<Mating>('mating', ref => ref.orderBy('name','asc').limit(10));
+    this.matingCollection = this.afs.collection<Mating>('mating', ref => ref.orderBy('name','asc'));
     this.matings = this.matingCollection.snapshotChanges().pipe(
       map(actions =>{
         return actions.map(a =>{

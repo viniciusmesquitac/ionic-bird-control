@@ -27,6 +27,8 @@ export class CreateBirdPage implements OnInit {
     lineage: '',
     father: '',
     mother: '',
+    anilha: '',
+    anilhado: false,
   };
 
   goBack(event) {
@@ -46,6 +48,10 @@ export class CreateBirdPage implements OnInit {
   }
 
   addBird() {
+    if(this.bird.anilha.length > 0) {
+      this.bird.anilhado=true;
+    }
+
     this.birdService.addBird(this.bird).then(() => {
       this.router.navigateByUrl('/');
       this.showToast('Pássaro adicionado!');

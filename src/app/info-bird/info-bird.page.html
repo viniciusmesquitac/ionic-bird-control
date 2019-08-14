@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="light">#ANILHA 1</ion-title>
+    <ion-title color="light" *ngIf="bird.anilhado">Anilha: {{bird.anilha}}</ion-title>
+    <ion-title color="light" *ngIf="!bird.anilhado">Informações do Pássaro</ion-title>
     <ion-buttons slot="start">
       <ion-back-button color="light" (click)='goBack($event)'></ion-back-button>
     </ion-buttons>
@@ -11,6 +12,11 @@
   <ion-item>
     <ion-label>Nome:</ion-label>
     <ion-input [(ngModel)]='bird.name'></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Número da anilha</ion-label>
+    <ion-input type="number" [(ngModel)]='bird.anilha'></ion-input>
   </ion-item>
 
   <ion-item>
@@ -27,7 +33,8 @@
       <ion-select-option *ngFor="let bird of (birdsMale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
     </ion-select>
     <ion-select *ngIf="isMale" [(ngModel)]='bird.couple' placeholder="Selecione">
-      <ion-select-option *ngFor="let bird of (birdsFemale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
+      <ion-select-option *ngFor="let bird of (birdsFemale | async)" value={{bird.name}}>{{bird.name}}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -43,9 +50,7 @@
 
   <ion-item>
     <ion-label>Linhagem</ion-label>
-    <ion-select [(ngModel)]='bird.lineage' placeholder="Selecione">
-      <ion-select-option value="f">Female</ion-select-option>
-      <ion-select-option value="m">Male</ion-select-option>
+    <ion-select [(ngModel)]='bird.lineage' placeholder="Visualizar">
     </ion-select>
   </ion-item>
 
@@ -59,7 +64,8 @@
   <ion-item>
     <ion-label>Mãe</ion-label>
     <ion-select [(ngModel)]='bird.mother' placeholder="Selecione">
-      <ion-select-option *ngFor="let bird of (birdsFemale | async)" value={{bird.name}}>{{bird.name}}</ion-select-option>
+      <ion-select-option *ngFor="let bird of (birdsFemale | async)" value={{bird.name}}>{{bird.name}}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 </ion-content>

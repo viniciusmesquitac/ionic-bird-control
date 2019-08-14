@@ -26,6 +26,7 @@ export class MatingFinalizeModalPagePage implements OnInit {
     dateInitMating: null,
     dateGale: null,
     dateFinalMating: null,
+    generateEggs: false,
     isMating: false
   }
 
