@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'couple/:id', loadChildren: './check-eggs/check-eggs.module#CheckEggsPageModule' },
   { path: 'add-mating', loadChildren: './add-mating/add-mating.module#AddMatingPageModule' },
   { path: 'check-eggs', loadChildren: './check-eggs/check-eggs.module#CheckEggsPageModule' },
-  { path: 'egg/:id', loadChildren: './info-egg/info-egg.module#InfoEggPageModule' }
+  { path: 'egg/:id', loadChildren: './info-egg/info-egg.module#InfoEggPageModule' },  { path: 'login-page', loadChildren: './login-page/login-page.module#LoginPagePageModule' }
+
 
 
 ];

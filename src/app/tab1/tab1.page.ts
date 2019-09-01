@@ -30,12 +30,6 @@ export class Tab1Page implements OnInit {
     this.navCtrl.navigateForward('/create-bird');
   }
 
-  filterBirds(event) {
-    this.text = event.target.value;
-    this.birdService.searchBird(this.text);
-    this.birds = this.birdService.getBirds();
-  }
-
   filterList(event) {
     this.birds = this.birdService.getBirds();
     var typed = event.target.value
@@ -63,9 +57,4 @@ export class Tab1Page implements OnInit {
       this.birds = this.birdService.getBirds();
     }
   }
-
-  searchBirds(event) {
-    console.log(event.target.value);
-  }
-
 }
