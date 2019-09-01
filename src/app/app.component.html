@@ -1,12 +1,8 @@
 <ion-app>
   <ion-menu side="start" menuId="first">
     <ion-header>
-      <ion-toolbar color="primary" padding=100>
-        <ion-thumbnail>
-          <img src="https://www.gravatar.com/userimage/166912858/b79b4c0851bfdf0e22d56f0e6f56f4b2?size=120">
-        </ion-thumbnail>
-        <ion-title>Vinicius</ion-title>
-        <ion-label>teste</ion-label>
+      <ion-toolbar color="primary text-center">
+        <ion-title>{{firebaseAuth.auth.currentUser.uid}}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>

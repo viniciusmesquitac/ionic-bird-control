@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar translucent>
+    <ion-title color="light">Autenticação</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="stacked">Login<ion-text color="danger">*</ion-text>
+    </ion-label>
+    <ion-input required type="email" [(ngModel)]=email></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Senha<ion-text color="danger">*</ion-text>
+    </ion-label>
+    <ion-input required type="password" [(ngModel)]=password></ion-input>
+  </ion-item>
+
+  <div class="ion-padding">
+    <ion-button expand="block" type="submit" class="ion-no-margin" (click)="loginUser()">Entrar</ion-button>
+  </div>
+
+</ion-content>

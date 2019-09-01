@@ -114,7 +114,7 @@ export class InfoBirdPage implements OnInit {
         }
       ]
     });
-
+    
     await alert.present();
   }
 

@@ -122,7 +122,6 @@ export class BirdsService {
           });
         })
       );
-      console.log('you aren\'t filtering');
     }
   }
 }
