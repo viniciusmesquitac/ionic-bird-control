@@ -27,6 +27,7 @@ export class InfoEggPage implements OnInit {
     mother: '',
     anilha:'',
     anilhado: false,
+    matings: [],
   };
   
   mother: Bird = {
@@ -39,6 +40,7 @@ export class InfoEggPage implements OnInit {
     mother: '',
     anilha:'',
     anilhado: false,
+    matings: [],
   };
 
   bird: Bird = {
@@ -51,6 +53,7 @@ export class InfoEggPage implements OnInit {
     mother: '',
     anilha:'',
     anilhado: false,
+    matings: [],
   };
 
 

@@ -3,6 +3,7 @@ import { NavController, ToastController, AlertController } from '@ionic/angular'
 import { ActivatedRoute, Router } from '@angular/router';
 import { BirdsService, Bird } from '../services/birds.service';
 import { Observable } from 'rxjs';
+import { MatingService } from '../services/mating.service';
 
 @Component({
   selector: 'app-info-bird',
@@ -17,7 +18,7 @@ export class InfoBirdPage implements OnInit {
   public isMale: Boolean;
 
   constructor(private navCtrl: NavController, private activatedRoute: ActivatedRoute, private birdService: BirdsService,
-    private toastCtrl: ToastController, private router: Router, public alertController: AlertController) { }
+    private toastCtrl: ToastController, private router: Router, public alertController: AlertController, private matingService : MatingService) { }
 
   bird: Bird = {
     name: '',
@@ -29,6 +30,7 @@ export class InfoBirdPage implements OnInit {
     mother: '',
     anilha:'',
     anilhado: false,
+    matings: [],
   };
 
   ngOnInit() {
@@ -63,6 +65,9 @@ export class InfoBirdPage implements OnInit {
     this.birdService.deleteBird(this.bird.id).then(() =>{
       this.router.navigateByUrl('/')
       this.showToast('Pássaro Deletado!');
+
+      this.deleteMating();
+      
     }, err => {
       this.showToast('Ocorreu um erro ao deletar, tente novamente.');
     });
@@ -111,6 +116,12 @@ export class InfoBirdPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  deleteMating(){
+    this.bird.matings.forEach(mating => {
+      this.matingService.deleteMatingById(mating);
+    });
   }
 
 }

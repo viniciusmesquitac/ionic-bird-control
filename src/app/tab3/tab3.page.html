@@ -12,32 +12,32 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>
+    <ion-list-header *ngIf = "(isMatingList | async)?.length > 0">
       <ion-text color="gray">Acasalados</ion-text>
     </ion-list-header>
-    <ion-item button *ngFor="let mating of (matings | async)" [routerLink]="['/mating',mating.id]">
+    <ion-item button *ngFor="let mating of isMatingList | async" [routerLink]="['/mating',mating.id]">
       <ion-thumbnail>
         <img src="https://www.gravatar.com/userimage/166912858/b9eca67bf5026e7447bb0a0c2441ae6d?size=120">
       </ion-thumbnail>
       <ion-label>
         <h3> {{ mating.name }} </h3>
-        <ion-label color="gray"><h3>Gaiola: ?</h3></ion-label>
+        <ion-label color="gray"><h3>Gaiola: {{mating.idCage}}</h3></ion-label>
       </ion-label>
      
     </ion-item>
   </ion-list>
 
   <ion-list>
-    <ion-list-header>
+    <ion-list-header *ngIf = "(notMatingList | async)?.length > 0">
       <ion-text color="gray">Não acasalados</ion-text>
     </ion-list-header>
-    <ion-item button *ngFor="let mating of (matings | async)" [routerLink]="['/mating',mating.id]">
+    <ion-item button *ngFor="let mating of notMatingList | async" [routerLink]="['/mating',mating.id]">
       <ion-thumbnail>
         <img src="https://www.gravatar.com/userimage/166912858/b9eca67bf5026e7447bb0a0c2441ae6d?size=120">
       </ion-thumbnail>
       <ion-label>
         <h3> {{mating.name}} </h3>
-        <ion-label color="gray"><h3>Gaiola: ?</h3></ion-label>
+        <ion-label color="gray"><h3>Gaiola: {{mating.idCage}}</h3></ion-label>
       </ion-label>
     </ion-item>
   </ion-list>

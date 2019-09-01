@@ -12,8 +12,8 @@ import { Observable } from 'rxjs'
 })
 
 export class AddMatingPage implements OnInit {
-  private maleName : string;
-  private femaleName: string;
+  private birdMale: Bird;
+  private birdFemale: Bird;
 
   mating: Mating = {
     name : '',
@@ -23,7 +23,9 @@ export class AddMatingPage implements OnInit {
       dateGale : null,
       dateFinalMating : null,
       generateEggs: false,
-      isMating : false
+      isMating : false,
+      idCage: '',
+
   }
 
   private maleBirds : Observable<Bird[]>;
@@ -38,24 +40,22 @@ export class AddMatingPage implements OnInit {
   ngOnInit() {
     this.femaleBirds = this.birdService.getFemaleBirds();
     this.maleBirds = this.birdService.getMaleBirds();
-    this.maleName = '';
-    this.femaleName = '';
   }
 
   selectMale(){
     this.birdService.getBird(this.mating.idFather).subscribe(async bird =>{
-      this.maleName = await bird.name;
+      this.birdMale = await bird;
     });
   }
 
   selectFemale(){
     this.birdService.getBird(this.mating.idMother).subscribe(async bird=> {
-      this.femaleName = await bird.name;
+      this.birdFemale = await bird;
     });
   }
 
   async recordMating(){
-    if (this.mating.idFather == '' || this.mating.idMother == ''){
+    if (this.mating.idFather == '' || this.mating.idMother == '' || this.mating.idCage == ''){
       const alert = await this.alertCtrl.create({
         header: 'Atenção',
         message: 'Preencha todos os campos',
@@ -87,23 +87,62 @@ export class AddMatingPage implements OnInit {
       await alert.present();
       await alert.onDidDismiss().then(async (data) =>{
         if(confirm){
-          this.mating.name = this.maleName+ " com " + this.femaleName;
-          this.matingService.createMating(this.mating);
-          const confirmAlert = await this.alertCtrl.create({
-            header: 'Sucesso',
-            message: 'Parabéns, '+ this.mating.name + ' agora estão juntos!',
-            buttons: [{
-              text: 'Okay',
-              handler: ()=> {
-                this.navCtrl.navigateForward('/tabs');
-              }
-            }]
-          });
 
-          await confirmAlert.present();
+          if(this.matingExist()){
+            const declineAlert = await this.alertCtrl.create({
+              header: 'Atenção',
+              message: 'Estes pássaros ja estão juntos, porfavor escolha outros pássaros',
+              buttons: ['Okay']
+            });
+
+            await declineAlert.present();
+          }else{
+              this.mating.name = this.birdMale.name + " com " + this.birdFemale.name;
+              this.matingService.createMating(this.mating);
+              
+              this.updateBirds();
+              
+              const confirmAlert = await this.alertCtrl.create({
+                header: 'Sucesso',
+                message: 'Parabéns, '+ this.mating.name + ' agora estão juntos!',
+                buttons: [{
+                  text: 'Okay',
+                  handler: ()=> {
+                    this.navCtrl.navigateForward('/tabs');
+                  }
+                }]
+              });
+    
+              await confirmAlert.present();
+          }
+
         }
       });
       }
     }
-  
+
+    matingExist(){
+      let exist: boolean; 
+      this.matingService.readMatingByCouple(this.birdMale.id,this.birdFemale.id).subscribe( matings =>{
+        if(matings.length > 0){
+          exist = true;                 
+        }else{
+          exist = false;
+        }
+      });
+      console.log(exist);
+      return exist;
+    }
+
+    updateBirds(){
+      this.matingService.readMatingByCouple(this.birdMale.id, this.birdFemale.id).subscribe( matings =>{  
+        matings.forEach(mating => {
+            console.log(mating.id);
+            this.birdMale.matings.push(mating.id);
+            this.birdFemale.matings.push(mating.id);
+            this.birdService.updateBird(this.birdMale);
+            this.birdService.updateBird(this.birdFemale);
+        });      
+      });
+    }
 }

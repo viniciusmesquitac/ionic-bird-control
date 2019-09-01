@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title color="light"> {{mating.name}} </ion-title>
     <ion-buttons slot="start">
-      <ion-back-button color="light"></ion-back-button>
+      <ion-back-button color="light" (click)='goBack($event)'></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -62,10 +62,11 @@
 
   <ion-item>
     <ion-label margin="20">Data de gala:</ion-label>
-    <ion-label  color="gray" class="ion-text-end">
+    <ion-label  color="gray" class="ion-text-end" *ngIf = "mating.dateGale == null">
       <ion-datetime displayFormat = "DD-MM-YYYY" placeholder="Selecione a Data" 
          class="ion-text-end" [(ngModel)] = "dateGale" (ionChange) = "changeStatus(this.dateGale)"></ion-datetime>
-    </ion-label>
+        </ion-label>
+    <ion-label color = "gray" class = "ion-text-end" *ngIf = "mating.dateGale != null"> {{mating.dateGale | date:'dd/MM/yyyy'}}</ion-label>
   </ion-item>
 </ion-content>
 

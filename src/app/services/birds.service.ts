@@ -14,6 +14,7 @@ export interface Bird {
   mother?: string;
   anilha?: string;
   anilhado: boolean;
+  matings: string[];
 }
 
 
@@ -90,7 +91,7 @@ export class BirdsService {
 
   updateBird(bird: Bird): Promise<void> {
     return this.birdCollection.doc(bird.id).update({name: bird.name, anilha:bird.anilha, gender: bird.gender, couple: bird.couple,
-      color: bird.color, lineage: bird.lineage, father: bird.father, mother: bird.mother});
+      color: bird.color, lineage: bird.lineage, father: bird.father, mother: bird.mother,matings : bird.matings});
   }
 
   deleteBird(id: string): Promise<void> {

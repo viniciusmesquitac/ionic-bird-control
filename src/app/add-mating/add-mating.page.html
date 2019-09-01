@@ -22,6 +22,10 @@
         <ion-select-option *ngFor = "let bird of (femaleBirds | async)" value = {{bird.id}}> {{bird.name}}</ion-select-option>
       </ion-select>
     </ion-item>
+
+    <ion-item>
+      <ion-input type = 'number' placeholder = 'Informe o número da gaiola' [(ngModel)] = "mating.idCage"></ion-input>
+    </ion-item>
   </ion-list>
   <ion-button class="round" expand="block" size="large" id = 'btnRecord' (click)="recordMating()">Registrar Acasalamento</ion-button>
 </ion-content>

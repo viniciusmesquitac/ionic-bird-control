@@ -29,6 +29,7 @@ export class CreateBirdPage implements OnInit {
     mother: '',
     anilha: '',
     anilhado: false,
+    matings: [],
   };
 
   goBack(event) {

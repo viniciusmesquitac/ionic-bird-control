@@ -22,6 +22,7 @@ export class InfoMatingPage implements OnInit {
     mother: '',
     anilha:'',
     anilhado: false,
+    matings: [] ,
   };
   
   mother: Bird = {
@@ -34,6 +35,7 @@ export class InfoMatingPage implements OnInit {
     mother: '',
     anilha:'',
     anilhado: false,
+    matings: [],
   };
 
   mating: Mating = {
@@ -45,6 +47,7 @@ export class InfoMatingPage implements OnInit {
     dateFinalMating : null,
     isMating : false,
     generateEggs: false,
+    idCage: '',
   }
   
   constructor(private navCtrl: NavController, private activatedRouter: ActivatedRoute, private birdsService: BirdsService,
@@ -77,7 +80,8 @@ export class InfoMatingPage implements OnInit {
       dateGale: date,
       dateFinalMating: this.mating.dateFinalMating,
       isMating: true,
-      generateEggs: false
+      generateEggs: false,
+      idCage: this.mating.idCage
     } 
     this.matingService.updateMating(mating);
   }
@@ -152,6 +156,10 @@ export class InfoMatingPage implements OnInit {
       message: msg,
       duration: 1000
     }).then(toast => toast.present());
+  }
+
+  goBack(){
+    this.navCtrl.pop();
   }
 
 }

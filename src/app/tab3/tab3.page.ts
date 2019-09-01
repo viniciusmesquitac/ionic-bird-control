@@ -9,13 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class Tab3Page implements OnInit{
 
-
-  private matings: Observable<Mating[]>;
+  private isMatingList: Observable<Mating[]>;
+  private notMatingList: Observable<Mating[]>;
 
   constructor(public navCtrl: NavController, private matingService: MatingService) {}
 
   ngOnInit(){
-    this.matings = this.matingService.readMatings();
+    this.isMatingList = this.matingService.readIsMating();
+    this.notMatingList = this.matingService.readNoMating();
+
   }
 
   ButtonClick(){
